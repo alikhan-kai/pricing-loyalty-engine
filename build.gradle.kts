@@ -1,38 +1,42 @@
 plugins {
-	java
-	id("org.springframework.boot") version "4.1.2"
-	id("io.spring.dependency-management") version "1.1.7"
+    java
+    id("org.springframework.boot") version "3.3.5" apply false
+    id("io.spring.dependency-management") version "1.1.6" apply false
 }
 
-group = "kz.kaspi"
-version = "0.0.1-SNAPSHOT"
+allprojects {
+    group = "kz.kaspi"
+    version = "1.0.0-SNAPSHOT"
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    repositories {
+        mavenCentral()
+    }
 }
 
-repositories {
-	mavenCentral()
-}
+subprojects {
+    apply(plugin = "java")
 
-dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	compileOnly("org.projectlombok:lombok")
-	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
-	testImplementation("org.springframework.boot:spring-boot-starter-data-r2dbc-test")
-	testImplementation("org.springframework.boot:spring-boot-starter-data-redis-reactive-test")
-	testImplementation("org.springframework.boot:spring-boot-starter-webflux-test")
-	testCompileOnly("org.projectlombok:lombok")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-	testAnnotationProcessor("org.projectlombok:lombok")
-}
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+    dependencies {
+        val lombok = "org.projectlombok:lombok:1.18.34"
+        "compileOnly"(lombok)
+        "annotationProcessor"(lombok)
+        "testCompileOnly"(lombok)
+        "testAnnotationProcessor"(lombok)
+
+        "testImplementation"("org.junit.jupiter:junit-jupiter:5.10.3")
+    }
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
