@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: rule-management-service
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:kaspi_rules}
+    username: ${POSTGRES_USER:kaspi}
+    password: ${POSTGRES_PASSWORD:kaspi_secret}
+
+kaspi:
+  rules:
+    kafka:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      rule-broadcast-topic: rule-broadcast-events
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus

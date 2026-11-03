@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: pricing-gateway-service
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+kaspi:
+  pricing:
+    monthly-bonus-cap: 30000
+    kafka:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      pricing-events-topic: pricing-ledger-events
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus

@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: bonus-ledger-service
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:kaspi_ledger}
+    username: ${POSTGRES_USER:kaspi}
+    password: ${POSTGRES_PASSWORD:kaspi_secret}
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:kaspi_ledger}
+    user: ${POSTGRES_USER:kaspi}
+    password: ${POSTGRES_PASSWORD:kaspi_secret}
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URIS:http://localhost:9200}
+
+kaspi:
+  ledger:
+    kafka:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      pricing-events-topic: pricing-ledger-events
+      consumer-group-id: bonus-ledger-group
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
