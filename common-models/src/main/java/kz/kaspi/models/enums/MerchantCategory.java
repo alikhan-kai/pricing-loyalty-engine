@@ -66,4 +66,21 @@ public enum MerchantCategory {
     public BigDecimal getInstallmentCommissionRate() {
         return installmentCommissionRate;
     }
+
+    /**
+     * Возвращает базовую ставку комиссии мерчанта в зависимости от способа оплаты.
+     *
+     * @param paymentMethod способ проведения платежа клиентом
+     * @return коэффициент комиссии (например, 0.0095 для 0.95%)
+     */
+    public BigDecimal resolveCommissionRate(PaymentMethod paymentMethod) {
+        if (paymentMethod == null) {
+            return baseQrCommissionRate;
+        }
+        return switch (paymentMethod) {
+            case KASPI_QR_GOLD, KASPI_ALAQAN -> baseQrCommissionRate;
+            case KASPI_RED_PLUS, KASPI_KREDIT -> installmentCommissionRate;
+            case OTHER_BANK_QR -> new BigDecimal("0.0130");
+        };
+    }
 }
