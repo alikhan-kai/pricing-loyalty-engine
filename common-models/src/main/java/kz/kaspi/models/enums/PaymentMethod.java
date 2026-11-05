@@ -27,5 +27,19 @@ public enum PaymentMethod {
     /**
      * Оплата биометрией (Kaspi Alaqan / ладонь).
      */
-    KASPI_ALAQAN
+    KASPI_ALAQAN;
+
+    /**
+     * Проверяет, является ли способ оплаты рассрочкой или кредитом (Red+, Kredit).
+     */
+    public boolean isInstallment() {
+        return this == KASPI_RED_PLUS || this == KASPI_KREDIT;
+    }
+
+    /**
+     * Проверяет, совершается ли оплата собственными дебетовыми средствами клиента (Gold, Alaqan).
+     */
+    public boolean isDebit() {
+        return this == KASPI_QR_GOLD || this == KASPI_ALAQAN;
+    }
 }
