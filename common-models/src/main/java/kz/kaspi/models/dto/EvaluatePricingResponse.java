@@ -36,4 +36,24 @@ public record EvaluatePricingResponse(
         String appliedCampaignCode,
         Instant evaluatedAt
 ) {
+    /**
+     * Проверяет, была ли транзакция разбита из-за исчерпания месячного лимита бонусов.
+     */
+    public boolean hasSplit() {
+        return splitStatus == SplitStatus.SPLIT_TRANSACTION;
+    }
+
+    /**
+     * Проверяет, был ли исчерпан месячный лимит бонусов до совершения операции.
+     */
+    public boolean isLimitExceeded() {
+        return splitStatus == SplitStatus.LIMIT_REACHED_ZERO_BONUS;
+    }
+
+    /**
+     * Проверяет, начислены ли бонусы по транзакции.
+     */
+    public boolean hasBonusesAwarded() {
+        return awardedBonuses != null && awardedBonuses.compareTo(BigDecimal.ZERO) > 0;
+    }
 }
