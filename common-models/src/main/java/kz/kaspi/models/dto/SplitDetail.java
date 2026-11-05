@@ -21,4 +21,20 @@ public record SplitDetail(
     public static SplitDetail fullyExceeded(BigDecimal fullAmount) {
         return new SplitDetail(BigDecimal.ZERO, fullAmount, BigDecimal.ZERO);
     }
+
+    /**
+     * Возвращает признак того, что сумма была разделена на акционную и безакционную части.
+     */
+    public boolean isSplit() {
+        return excessAmount != null && excessAmount.compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    /**
+     * Возвращает общую сумму транзакции (eligibleAmount + excessAmount).
+     */
+    public BigDecimal totalAmount() {
+        BigDecimal eligible = eligibleAmount != null ? eligibleAmount : BigDecimal.ZERO;
+        BigDecimal excess = excessAmount != null ? excessAmount : BigDecimal.ZERO;
+        return eligible.add(excess);
+    }
 }
