@@ -41,4 +41,18 @@ public record EvaluatePricingRequest(
             installmentMonths = 0;
         }
     }
+
+    /**
+     * Проверяет, оформляется ли покупка в рассрочку.
+     */
+    public boolean hasInstallment() {
+        return (installmentMonths != null && installmentMonths > 0) || paymentMethod.isInstallment();
+    }
+
+    /**
+     * Проверяет соответствие условиям крупной рассрочки Kaspi Жұма 0-0-24 (от 100 000 KZT).
+     */
+    public boolean isKaspiJumaEligible() {
+        return amount != null && amount.compareTo(new BigDecimal("100000")) >= 0;
+    }
 }
