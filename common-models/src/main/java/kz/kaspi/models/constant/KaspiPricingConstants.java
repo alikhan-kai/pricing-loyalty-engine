@@ -42,4 +42,24 @@ public final class KaspiPricingConstants {
      * Базовая валюта операций.
      */
     public static final String DEFAULT_CURRENCY = "KZT";
+
+    /**
+     * Базовая ставка эквайринга мерчанта при оплате с Kaspi Gold / QR (0.95%).
+     */
+    public static final BigDecimal DEFAULT_BASE_QR_COMMISSION = new BigDecimal("0.0095");
+
+    /**
+     * Ставка эквайринга при оплате картами других банков через Единый QR (1.30%).
+     */
+    public static final BigDecimal DEFAULT_OTHER_BANK_QR_COMMISSION = new BigDecimal("0.0130");
+
+    /**
+     * Название топика Kafka для финансового леджера и аналитики.
+     */
+    public static final String TOPIC_PRICING_LEDGER_EVENTS = "pricing-ledger-events";
+
+    /**
+     * Целевой SLA времени вычисления тарифа и бонусов (до 15 мс).
+     */
+    public static final long TARGET_SLA_MILLIS = 15L;
 }
