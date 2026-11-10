@@ -24,5 +24,19 @@ public enum SplitStatus {
     /**
      * По данной транзакции нет активных акций/промо (бонусы не начисляются).
      */
-    NO_PROMO
+    NO_PROMO;
+
+    /**
+     * Проверяет, начислялись ли бонусы по операции (полностью или частично со сплитом).
+     */
+    public boolean hasBonuses() {
+        return this == FULL_AWARDED || this == SPLIT_TRANSACTION;
+    }
+
+    /**
+     * Проверяет, затронул ли расчет лимит бонусов (частично разбита или лимит уже был исчерпан).
+     */
+    public boolean isLimitImpacted() {
+        return this == SPLIT_TRANSACTION || this == LIMIT_REACHED_ZERO_BONUS;
+    }
 }
