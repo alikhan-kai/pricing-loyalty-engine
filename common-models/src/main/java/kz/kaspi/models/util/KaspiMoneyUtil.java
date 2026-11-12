@@ -41,4 +41,15 @@ public final class KaspiMoneyUtil {
         }
         return roundMoney(base.multiply(rate));
     }
+
+    /**
+     * Вычисляет чистую сумму выплаты мерчанту (Net Settlement = Amount - Commission).
+     */
+    public static BigDecimal calculateNetPayout(BigDecimal amount, BigDecimal commission) {
+        if (amount == null) {
+            return roundMoney(BigDecimal.ZERO);
+        }
+        BigDecimal comm = commission != null ? commission : BigDecimal.ZERO;
+        return roundMoney(amount.subtract(comm));
+    }
 }
