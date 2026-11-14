@@ -62,4 +62,19 @@ public final class KaspiPricingConstants {
      * Целевой SLA времени вычисления тарифа и бонусов (до 15 мс).
      */
     public static final long TARGET_SLA_MILLIS = 15L;
+
+    /**
+     * Системный идентификатор общенациональной акции Kaspi Жұма.
+     */
+    public static final String CAMPAIGN_KASPI_JUMA = "KASPI_JUMA";
+
+    /**
+     * Системный идентификатор клубной акции рассрочки Kaspi Red+.
+     */
+    public static final String CAMPAIGN_KASPI_RED_PLUS = "KASPI_RED_PLUS";
+
+    /**
+     * Системный идентификатор базовой бонусной промо-кампании.
+     */
+    public static final String CAMPAIGN_BASE_PROMO = "KASPI_BASE_PROMO";
 }
