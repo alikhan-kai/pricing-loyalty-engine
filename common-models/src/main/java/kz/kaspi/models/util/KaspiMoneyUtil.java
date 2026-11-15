@@ -52,4 +52,18 @@ public final class KaspiMoneyUtil {
         BigDecimal comm = commission != null ? commission : BigDecimal.ZERO;
         return roundMoney(amount.subtract(comm));
     }
+
+    /**
+     * Проверяет, является ли денежная сумма нулевой или отрицательной.
+     */
+    public static boolean isZeroOrNegative(BigDecimal amount) {
+        return amount == null || amount.compareTo(BigDecimal.ZERO) <= 0;
+    }
+
+    /**
+     * Проверяет, является ли денежная сумма строго положительной.
+     */
+    public static boolean isPositive(BigDecimal amount) {
+        return amount != null && amount.compareTo(BigDecimal.ZERO) > 0;
+    }
 }
