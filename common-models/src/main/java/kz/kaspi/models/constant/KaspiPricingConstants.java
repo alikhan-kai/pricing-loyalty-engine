@@ -77,4 +77,14 @@ public final class KaspiPricingConstants {
      * Системный идентификатор базовой бонусной промо-кампании.
      */
     public static final String CAMPAIGN_BASE_PROMO = "KASPI_BASE_PROMO";
+
+    /**
+     * Стандартный тайм-аут ответа fast-path хранилища Redis (в миллисекундах).
+     */
+    public static final int DEFAULT_REDIS_TIMEOUT_MS = 2000;
+
+    /**
+     * Паттерн ключа Redis для хранения скользящего месячного лимита бонусов.
+     */
+    public static final String REDIS_BONUS_MONTH_KEY_PATTERN = "user:%s:bonus_month:%s";
 }
