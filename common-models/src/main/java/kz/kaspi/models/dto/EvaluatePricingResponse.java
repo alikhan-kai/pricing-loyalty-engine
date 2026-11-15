@@ -56,4 +56,11 @@ public record EvaluatePricingResponse(
     public boolean hasBonusesAwarded() {
         return awardedBonuses != null && awardedBonuses.compareTo(BigDecimal.ZERO) > 0;
     }
+
+    /**
+     * Проверяет, является ли комиссия мерчанта нулевой (например, в рамках промо).
+     */
+    public boolean isZeroCommission() {
+        return merchantCommissionAmount == null || merchantCommissionAmount.compareTo(BigDecimal.ZERO) == 0;
+    }
 }
