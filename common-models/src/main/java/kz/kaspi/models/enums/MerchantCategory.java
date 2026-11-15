@@ -83,4 +83,11 @@ public enum MerchantCategory {
             case OTHER_BANK_QR -> new BigDecimal("0.0130");
         };
     }
+
+    /**
+     * Проверяет, является ли категория льготной (социально значимые секторы: продукты, аптеки, АЗС).
+     */
+    public boolean isPreferentialCategory() {
+        return this == GROCERY || this == PHARMACY || this == PETROL_STATION;
+    }
 }
