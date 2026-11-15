@@ -1,5 +1,6 @@
 package kz.kaspi.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import kz.kaspi.models.enums.MerchantCategory;
@@ -22,6 +23,7 @@ import java.util.UUID;
  * @param installmentMonths  Срок рассрочки (0 для дебетовых платежей, 3 для Red+, 12/24 для Жұма).
  * @param timestamp          Временная метка вызова на кассе/терминале.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record EvaluatePricingRequest(
         @NotNull UUID transactionId,
         @NotNull Long userId,
