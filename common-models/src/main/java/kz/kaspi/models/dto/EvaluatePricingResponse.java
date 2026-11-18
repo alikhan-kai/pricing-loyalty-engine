@@ -1,5 +1,6 @@
 package kz.kaspi.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import kz.kaspi.models.enums.SplitStatus;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ import java.util.UUID;
  * @param appliedCampaignCode        Код примененной маркетинговой акции (если активна).
  * @param evaluatedAt                Метка времени завершения расчета.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record EvaluatePricingResponse(
         UUID transactionId,
         BigDecimal originalAmount,
