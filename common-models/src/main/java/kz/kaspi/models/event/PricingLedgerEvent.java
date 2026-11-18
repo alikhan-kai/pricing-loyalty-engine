@@ -1,5 +1,6 @@
 package kz.kaspi.models.event;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import kz.kaspi.models.dto.EvaluatePricingRequest;
 import kz.kaspi.models.dto.EvaluatePricingResponse;
 import kz.kaspi.models.enums.MerchantCategory;
@@ -15,6 +16,7 @@ import java.util.UUID;
  * Используется сервисом 'bonus-ledger-service' для создания бухгалтерских проводок
  * двойной записи в PostgreSQL и потоковой индексации в Elasticsearch.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record PricingLedgerEvent(
         UUID transactionId,
         Long userId,
