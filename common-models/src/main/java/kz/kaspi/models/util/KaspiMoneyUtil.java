@@ -66,4 +66,22 @@ public final class KaspiMoneyUtil {
     public static boolean isPositive(BigDecimal amount) {
         return amount != null && amount.compareTo(BigDecimal.ZERO) > 0;
     }
+
+    /**
+     * Безопасное определение минимальной суммы из двух значений с защитой от null.
+     */
+    public static BigDecimal min(BigDecimal first, BigDecimal second) {
+        if (first == null) return second;
+        if (second == null) return first;
+        return first.compareTo(second) <= 0 ? first : second;
+    }
+
+    /**
+     * Безопасное определение максимальной суммы из двух значений с защитой от null.
+     */
+    public static BigDecimal max(BigDecimal first, BigDecimal second) {
+        if (first == null) return second;
+        if (second == null) return first;
+        return first.compareTo(second) >= 0 ? first : second;
+    }
 }
