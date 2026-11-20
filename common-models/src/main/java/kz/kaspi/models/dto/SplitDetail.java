@@ -1,5 +1,7 @@
 package kz.kaspi.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 
 /**
@@ -9,6 +11,7 @@ import java.math.BigDecimal;
  * @param excessAmount     Остаток суммы платежа сверх лимита, рассчитанный по ставке 0%.
  * @param eligibleBonuses  Фактически начисленное количество бонусов за eligibleAmount.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record SplitDetail(
         BigDecimal eligibleAmount,
         BigDecimal excessAmount,
@@ -36,5 +39,12 @@ public record SplitDetail(
         BigDecimal eligible = eligibleAmount != null ? eligibleAmount : BigDecimal.ZERO;
         BigDecimal excess = excessAmount != null ? excessAmount : BigDecimal.ZERO;
         return eligible.add(excess);
+    }
+
+    /**
+     * Проверяет, начислены ли бонусы за акционную часть суммы.
+     */
+    public boolean hasEligibleBonuses() {
+        return eligibleBonuses != null && eligibleBonuses.compareTo(BigDecimal.ZERO) > 0;
     }
 }
