@@ -87,4 +87,14 @@ public final class KaspiPricingConstants {
      * Паттерн ключа Redis для хранения скользящего месячного лимита бонусов.
      */
     public static final String REDIS_BONUS_MONTH_KEY_PATTERN = "user:%s:bonus_month:%s";
+
+    /**
+     * Стандартное наименование группы консьюмеров сервиса bonus-ledger в Kafka.
+     */
+    public static final String DEFAULT_LEDGER_CONSUMER_GROUP = "bonus-ledger-group";
+
+    /**
+     * Минимальная сумма покупки для оформления клубной рассрочки Kaspi Red+ (10 000 KZT).
+     */
+    public static final BigDecimal MIN_RED_INSTALLMENT_AMOUNT = new BigDecimal("10000");
 }
