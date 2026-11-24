@@ -42,4 +42,11 @@ public enum PaymentMethod {
     public boolean isDebit() {
         return this == KASPI_QR_GOLD || this == KASPI_ALAQAN;
     }
+
+    /**
+     * Проверяет, является ли операция внутренней в рамках продуктов экосистемы Kaspi.
+     */
+    public boolean isKaspiInternal() {
+        return this != OTHER_BANK_QR;
+    }
 }
