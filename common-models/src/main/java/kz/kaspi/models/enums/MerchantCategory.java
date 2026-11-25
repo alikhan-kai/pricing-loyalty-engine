@@ -90,4 +90,11 @@ public enum MerchantCategory {
     public boolean isPreferentialCategory() {
         return this == GROCERY || this == PHARMACY || this == PETROL_STATION;
     }
+
+    /**
+     * Проверяет, применяется ли к категории повышенная ставка рассрочки (>= 10%).
+     */
+    public boolean isHighCommission() {
+        return installmentCommissionRate.compareTo(new BigDecimal("0.100")) >= 0;
+    }
 }
