@@ -30,6 +30,7 @@ subprojects {
         "testAnnotationProcessor"(lombok)
 
         "testImplementation"("org.junit.jupiter:junit-jupiter:5.10.3")
+        "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
     }
 
     tasks.withType<JavaCompile> {
